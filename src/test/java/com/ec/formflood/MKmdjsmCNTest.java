@@ -1,7 +1,5 @@
 package com.ec.formflood;
 
-import java.util.concurrent.TimeUnit;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,7 +9,7 @@ import com.ec.formflood.flood.Flood;
 public class MKmdjsmCNTest extends FormfloodApplicationTests{
 
 	@Autowired
-	@Qualifier("dgDuoshoujieCN_SOC")
+	@Qualifier("lvtZoosnetNET_ART")
 	Flood flood;
 	@Test
 	public void contextLoads() {

@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.net.ssl.SSLContext;
-import javax.security.cert.X509Certificate;
 
 import org.apache.http.HttpHost;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -28,7 +27,6 @@ import org.apache.http.ssl.TrustStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -38,6 +36,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsAsyncClientHttpRequestFactory;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.concurrent.FailureCallback;
+import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.SuccessCallback;
 import org.springframework.web.client.AsyncRestTemplate;
 
@@ -236,6 +235,18 @@ public abstract class FloodAsyncRestTemplate extends FloodAbstract implements In
 
 	}
 	
+	protected byte[] download(String url,HttpHeaders headers) throws Exception {
+		
+		ListenableFuture<ResponseEntity<byte[]>> future = asyncRestTemplate.exchange(url, HttpMethod.GET,
+				new HttpEntity<byte[]>(headers), byte[].class);
+
+		//future.addCallback(new SCallback(url,url,System.currentTimeMillis()),new FCallback(url,url,System.currentTimeMillis()));
+		ResponseEntity<byte[]> response = future.get();
+		byte[] result = response.getBody();
+		return result;
+
+	}
+	
 	protected   class SCallback implements SuccessCallback<ResponseEntity<byte[]>> {
 		
 
@@ -382,19 +393,10 @@ public abstract class FloodAsyncRestTemplate extends FloodAbstract implements In
 		Map<String, String> map = toMap(params);
 		asyncRestTemplate.delete(url, map).addCallback(new SCallback(url,params,System.currentTimeMillis()),new FCallback(url,params,System.currentTimeMillis()));
 	}
-
-	protected byte[] download(String url,HttpHeaders headers) throws Exception {
-		
-		ListenableFuture<ResponseEntity<byte[]>> future = asyncRestTemplate.exchange(url, HttpMethod.GET,
-				new HttpEntity<byte[]>(headers), byte[].class);
-
-		future.addCallback(new SCallback<ResponseEntity<byte[]>>(url,url,System.currentTimeMillis()),new FCallback(url,url,System.currentTimeMillis()));
-		ResponseEntity<byte[]> response = future.get();
-		byte[] result = response.getBody();
-		return result;
-
-	}
 	*/
+
+	
+	
 
 	
 	
