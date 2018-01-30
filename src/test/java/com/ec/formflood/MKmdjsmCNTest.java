@@ -9,7 +9,7 @@ import com.ec.formflood.flood.Flood;
 public class MKmdjsmCNTest extends FormfloodApplicationTests{
 
 	@Autowired
-	@Qualifier("lvtZoosnetNET_ART")
+	@Qualifier("dgDuoshoujieCN_SOC")
 	Flood flood;
 	@Test
 	public void contextLoads() {
