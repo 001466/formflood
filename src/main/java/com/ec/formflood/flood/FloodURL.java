@@ -1,12 +1,10 @@
 package com.ec.formflood.flood;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
 
@@ -14,9 +12,8 @@ import org.apache.http.NameValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.ec.formflood.random.RProxy;
+import com.ec.formflood.model.ProxyType;
 import com.ec.formflood.random.RProxy.ProxyEntity;
 
 public abstract class FloodURL extends FloodAbstract implements InitializingBean{
@@ -35,13 +32,13 @@ public abstract class FloodURL extends FloodAbstract implements InitializingBean
 		
 		try {
 			
-			connetProxy=new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyEntity.getIp(), proxyEntity.getPort()));
+			connetProxy=new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyEntity.getHost(), proxyEntity.getPort()));
 
 			connection= (HttpURLConnection) URL.openConnection(connetProxy);
 			
-			connection.setRequestProperty("X-Forwarded-For", getProxy().getIp());
-			connection.setRequestProperty("Proxy-Client-IP", getProxy().getIp());
-			connection.setRequestProperty("WL-Proxy-Client-IP", getProxy().getIp());
+			connection.setRequestProperty("X-Forwarded-For", getProxy().getHost());
+			connection.setRequestProperty("Proxy-Client-IP", getProxy().getHost());
+			connection.setRequestProperty("WL-Proxy-Client-IP", getProxy().getHost());
 		
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -83,14 +80,14 @@ public abstract class FloodURL extends FloodAbstract implements InitializingBean
 		sb.append("msg:").append(connection.getResponseMessage()).append("\r\n");
 		
 		if (proxyEntity != null)
-			sb.append("proxy:").append(proxyEntity.getIp()).append(",").append(proxyEntity.getPort())
-					.append(",").append(proxyEntity.getProtocol()).append(",")
+			sb.append("proxy:").append(proxyEntity.getHost()).append(",").append(proxyEntity.getPort())
+					.append(",").append(proxyEntity.getProtl()).append(",")
 					.append(proxyEntity.getUsername()).append(",").append(proxyEntity.getPassword())
 					.append("\r\n");
 		sb.append("error:").append(ex.getMessage()).append("\r\n");
 		sb.append("\r\n");
 		LOGGER.error(sb.toString());
-		setProxy(randomProxy.random(RProxy.ProxyType.HTTP));
+		setProxy(randomProxy.random(ProxyType.HTTP));
 	}
 	
 	public void onSuccess(HttpURLConnection connection, List<NameValuePair> params) throws IOException{
@@ -103,8 +100,8 @@ public abstract class FloodURL extends FloodAbstract implements InitializingBean
 		sb.append("msg:").append(connection.getResponseMessage()).append("\r\n");
 
 		if (proxyEntity != null)
-			sb.append("proxy:").append(proxyEntity.getIp()).append(",").append(proxyEntity.getPort())
-					.append(",").append(proxyEntity.getProtocol()).append(",")
+			sb.append("proxy:").append(proxyEntity.getHost()).append(",").append(proxyEntity.getPort())
+					.append(",").append(proxyEntity.getProtl()).append(",")
 					.append(proxyEntity.getUsername()).append(",").append(proxyEntity.getPassword())
 					.append("\r\n");
 		

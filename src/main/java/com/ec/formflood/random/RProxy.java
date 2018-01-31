@@ -2,41 +2,39 @@ package com.ec.formflood.random;
 
 import org.springframework.stereotype.Component;
 
+import com.ec.formflood.model.ProxyType;
+
 @Component("proxy")
 public class RProxy {
 
-	public static enum ProxyType {
-		/**
-		 * Represents a direct connection, or the absence of a proxy.
-		 */
-		DIRECT,
-		/**
-		 * Represents proxy for high level protocols such as HTTP or FTP.
-		 */
-		HTTP,
-
-		HTTPS,
-		/**
-		 * Represents a SOCKS (V4 or V5) proxy.
-		 */
-		SOCKS
-
-	};
 
 	public class ProxyEntity {
 
-		String id;
-		String ip;
+		String 	id;
+		String 	host;
+		public String getHost() {
+			return host;
+		}
+		public void setHost(String host) {
+			this.host = host;
+		}
+		public ProxyType getProtl() {
+			return protl;
+		}
+		public void setProtl(ProxyType protl) {
+			this.protl = protl;
+		}
+
 		Integer port;
-		ProxyType protocol;
+		ProxyType protl;
 		String username;
 		String password;
 
 		public ProxyEntity() {};
 		public ProxyEntity(String ip,Integer port,ProxyType type) {
-			this.ip=ip;
+			this.host=ip;
 			this.port=port;
-			this.protocol=type;
+			this.protl=type;
 		};
 		 
 
@@ -46,14 +44,6 @@ public class RProxy {
 
 		public void setId(String id) {
 			this.id = id;
-		}
-
-		public String getIp() {
-			return ip;
-		}
-
-		public void setIp(String ip) {
-			this.ip = ip;
 		}
 
 		public String getUsername() {
@@ -80,13 +70,7 @@ public class RProxy {
 			this.port = port;
 		}
 
-		public ProxyType getProtocol() {
-			return protocol;
-		}
 
-		public void setProtocol(ProxyType protocol) {
-			this.protocol = protocol;
-		}
 	}
 
 	public ProxyEntity random() {

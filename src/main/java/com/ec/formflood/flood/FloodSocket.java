@@ -80,7 +80,7 @@ public abstract class FloodSocket extends FloodAbstract implements InitializingB
             }
         });*/
 		
-        Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(proxyEntity.getIp(),proxyEntity.getPort()));
+        Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(proxyEntity.getHost(),proxyEntity.getPort()));
         this.socket = new Socket(proxy);
         try {
 			socket.connect(new InetSocketAddress(uri.getHost(), uri.getPort() == -1 ? 80 : uri.getPort()));

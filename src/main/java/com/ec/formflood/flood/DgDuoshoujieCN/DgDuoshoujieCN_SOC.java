@@ -1,16 +1,10 @@
 package com.ec.formflood.flood.DgDuoshoujieCN;
 
 import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
-import java.net.Socket;
-import java.net.URI;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,11 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.ec.formflood.flood.FloodAbstract;
 import com.ec.formflood.flood.FloodSocket;
+import com.ec.formflood.model.ProxyType;
 import com.ec.formflood.random.RProduct;
-import com.ec.formflood.random.RProxy;
-import com.ec.formflood.random.RProxy.ProxyEntity;
 
 @Service("dgDuoshoujieCN_SOC")
 public class DgDuoshoujieCN_SOC extends FloodSocket implements InitializingBean {
@@ -67,9 +59,9 @@ public class DgDuoshoujieCN_SOC extends FloodSocket implements InitializingBean 
 			
 			outsb.append("Host:").append(uri.getHost()).append("\r\n");
 			if(getProxy()!=null){
-				outsb.append("X-Forwarded-For:").append(getProxy().getIp()).append("\r\n"); 
-				outsb.append("Proxy-Client-IP:").append(getProxy().getIp()).append("\r\n"); 
-				outsb.append("WL-Proxy-Client-IP:").append(getProxy().getIp()).append("\r\n"); 
+				outsb.append("X-Forwarded-For:").append(getProxy().getHost()).append("\r\n"); 
+				outsb.append("Proxy-Client-IP:").append(getProxy().getHost()).append("\r\n"); 
+				outsb.append("WL-Proxy-Client-IP:").append(getProxy().getHost()).append("\r\n"); 
 			}
 			outsb.append("Content-Length:").append(data.length()).append("\r\n"); 
 
@@ -118,7 +110,7 @@ public class DgDuoshoujieCN_SOC extends FloodSocket implements InitializingBean 
 			LOGGER.error(e.getMessage(),e);
 		}finally{
 			params.clear();
-			setProxy(randomProxy.random(RProxy.ProxyType.SOCKS));
+			setProxy(randomProxy.random(ProxyType.SOCKS));
 		}
 
 	}

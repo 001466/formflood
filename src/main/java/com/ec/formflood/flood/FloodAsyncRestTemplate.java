@@ -40,6 +40,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.SuccessCallback;
 import org.springframework.web.client.AsyncRestTemplate;
 
+import com.ec.formflood.model.ProxyType;
 import com.ec.formflood.random.RProxy;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -71,9 +72,9 @@ public abstract class FloodAsyncRestTemplate extends FloodAbstract implements In
 		jsonHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		
 		if(getProxy()!=null){
-			jsonHeaders.add("X-Forwarded-For", getProxy().getIp());
-			jsonHeaders.add("Proxy-Client-IP", getProxy().getIp());
-			jsonHeaders.add("WL-Proxy-Client-IP", getProxy().getIp());
+			jsonHeaders.add("X-Forwarded-For", getProxy().getHost());
+			jsonHeaders.add("Proxy-Client-IP", getProxy().getHost());
+			jsonHeaders.add("WL-Proxy-Client-IP", getProxy().getHost());
 		}
 		return jsonHeaders;
 	}
@@ -83,9 +84,9 @@ public abstract class FloodAsyncRestTemplate extends FloodAbstract implements In
 		xfomrHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 		
 		if(getProxy()!=null){
-			xfomrHeaders.add("X-Forwarded-For", getProxy().getIp());
-			xfomrHeaders.add("Proxy-Client-IP", getProxy().getIp());
-			xfomrHeaders.add("WL-Proxy-Client-IP", getProxy().getIp());
+			xfomrHeaders.add("X-Forwarded-For", getProxy().getHost());
+			xfomrHeaders.add("Proxy-Client-IP", getProxy().getHost());
+			xfomrHeaders.add("WL-Proxy-Client-IP", getProxy().getHost());
 		}
 		return xfomrHeaders;
 	}
@@ -97,9 +98,9 @@ public abstract class FloodAsyncRestTemplate extends FloodAbstract implements In
 		downloadHeaders.setAccept(list);
 		
 		if(getProxy()!=null){
-			downloadHeaders.add("X-Forwarded-For", getProxy().getIp());
-			downloadHeaders.add("Proxy-Client-IP", getProxy().getIp());
-			downloadHeaders.add("WL-Proxy-Client-IP", getProxy().getIp());
+			downloadHeaders.add("X-Forwarded-For", getProxy().getHost());
+			downloadHeaders.add("Proxy-Client-IP", getProxy().getHost());
+			downloadHeaders.add("WL-Proxy-Client-IP", getProxy().getHost());
 		}
 		
 		return downloadHeaders;
@@ -160,10 +161,10 @@ public abstract class FloodAsyncRestTemplate extends FloodAbstract implements In
 		
 		try{
 			
-			switch (proxyEntity.getProtocol()) {
+			switch (proxyEntity.getProtl()) {
 			
 				case HTTP:
-					HttpHost httpProxy = new HttpHost(proxyEntity.getIp(), proxyEntity.getPort());
+					HttpHost httpProxy = new HttpHost(proxyEntity.getHost(), proxyEntity.getPort());
 					httpClient = HttpAsyncClientBuilder.create()
 							.setConnectionManager(poolingNHttpClientConnectionManager())
 							.setMaxConnPerRoute(httpclientPoolingMaxPerRoute)
@@ -174,7 +175,7 @@ public abstract class FloodAsyncRestTemplate extends FloodAbstract implements In
 					break;
 					
 				case HTTPS:
-					HttpHost sslProxy = new HttpHost(proxyEntity.getIp(), proxyEntity.getPort());
+					HttpHost sslProxy = new HttpHost(proxyEntity.getHost(), proxyEntity.getPort());
 					TrustStrategy acceptingTrustStrategy = new TrustStrategy() {
 						@Override
 						public boolean isTrusted(java.security.cert.X509Certificate[] chain, String authType)
@@ -272,8 +273,8 @@ public abstract class FloodAsyncRestTemplate extends FloodAbstract implements In
 			sb.append("url:").append(url).append("\r\n");
 			sb.append("params:").append(params).append("\r\n");
 			if (proxyEntity != null)
-				sb.append("proxy:").append(proxyEntity.getIp()).append(",").append(proxyEntity.getPort())
-						.append(",").append(proxyEntity.getProtocol()).append(",")
+				sb.append("proxy:").append(proxyEntity.getHost()).append(",").append(proxyEntity.getPort())
+						.append(",").append(proxyEntity.getProtl()).append(",")
 						.append(proxyEntity.getUsername()).append(",").append(proxyEntity.getPassword())
 						.append("\r\n");
 			sb.append("duration:").append(System.currentTimeMillis() - s).append("\r\n");
@@ -314,15 +315,15 @@ public abstract class FloodAsyncRestTemplate extends FloodAbstract implements In
 			sb.append("url:").append(url).append("\r\n");
 			sb.append("params:").append(params).append("\r\n");
 			if (proxyEntity != null)
-				sb.append("proxy:").append(proxyEntity.getIp()).append(",").append(proxyEntity.getPort())
-						.append(",").append(proxyEntity.getProtocol()).append(",")
+				sb.append("proxy:").append(proxyEntity.getHost()).append(",").append(proxyEntity.getPort())
+						.append(",").append(proxyEntity.getProtl()).append(",")
 						.append(proxyEntity.getUsername()).append(",").append(proxyEntity.getPassword())
 						.append("\r\n");
 			sb.append("duration:").append(System.currentTimeMillis() - s).append("\r\n");
 			sb.append("error:").append(ex.getMessage()).append("\r\n");
 			sb.append("\r\n");
 			LOGGER.error(sb.toString());
-			setProxy(randomProxy.random(RProxy.ProxyType.HTTP));
+			setProxy(randomProxy.random(ProxyType.HTTP));
 
 		}
 	}
