@@ -163,7 +163,7 @@ public abstract class FloodAsyncRestTemplate extends FloodAbstract implements In
 			
 			switch (proxyEntity.getProtl()) {
 			
-				case HTTP:
+				case http:
 					HttpHost httpProxy = new HttpHost(proxyEntity.getHost(), proxyEntity.getPort());
 					httpClient = HttpAsyncClientBuilder.create()
 							.setConnectionManager(poolingNHttpClientConnectionManager())
@@ -174,7 +174,7 @@ public abstract class FloodAsyncRestTemplate extends FloodAbstract implements In
 							.build();
 					break;
 					
-				case HTTPS:
+				case https:
 					HttpHost sslProxy = new HttpHost(proxyEntity.getHost(), proxyEntity.getPort());
 					TrustStrategy acceptingTrustStrategy = new TrustStrategy() {
 						@Override
@@ -323,7 +323,7 @@ public abstract class FloodAsyncRestTemplate extends FloodAbstract implements In
 			sb.append("error:").append(ex.getMessage()).append("\r\n");
 			sb.append("\r\n");
 			LOGGER.error(sb.toString());
-			setProxy(randomProxy.random(ProxyType.HTTP));
+			setProxy(randomProxy.random(ProxyType.http));
 
 		}
 	}

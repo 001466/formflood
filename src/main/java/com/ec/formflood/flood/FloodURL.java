@@ -87,7 +87,7 @@ public abstract class FloodURL extends FloodAbstract implements InitializingBean
 		sb.append("error:").append(ex.getMessage()).append("\r\n");
 		sb.append("\r\n");
 		LOGGER.error(sb.toString());
-		setProxy(randomProxy.random(ProxyType.HTTP));
+		setProxy(randomProxy.random(ProxyType.http));
 	}
 	
 	public void onSuccess(HttpURLConnection connection, List<NameValuePair> params) throws IOException{

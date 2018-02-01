@@ -3,19 +3,19 @@ package com.ec.formflood.model;
 public enum ProxyType {
 
 	/**
-	 * Represents a direct connection, or the absence of a proxy.
+	 * represents a direct connection, or the absence of a proxy.
 	 */
-	DIRECT,
+	direct,
 	/**
-	 * Represents proxy for high level protocols such as HTTP or FTP.
+	 * represents proxy for high level protocols such as http or ftp.
 	 */
-	HTTP,
+	http,
 
-	HTTPS,
+	https,
 	/**
-	 * Represents a SOCKS (V4 or V5) proxy.
+	 * represents a socks (v4 or v5) proxy.
 	 */
-	SOCKS
+	socks
 
 
 }

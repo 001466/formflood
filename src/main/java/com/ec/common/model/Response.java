@@ -21,6 +21,7 @@ public class Response<T> extends BaseEntity{
 	protected String message;
 	protected T data;
 
+	public Response(){};
 	public Response(Integer errorCode) {
 		super();
 		this.errorCode = errorCode;

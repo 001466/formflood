@@ -3,6 +3,7 @@ package com.ec.formflood.flood;
 import com.ec.formflood.random.RProxy;
 
 public interface Flood {
+	
 	public String getUrl();
 
 	public void flooding();

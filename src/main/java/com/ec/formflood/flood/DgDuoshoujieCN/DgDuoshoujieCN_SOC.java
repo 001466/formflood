@@ -110,7 +110,7 @@ public class DgDuoshoujieCN_SOC extends FloodSocket implements InitializingBean 
 			LOGGER.error(e.getMessage(),e);
 		}finally{
 			params.clear();
-			setProxy(randomProxy.random(ProxyType.SOCKS));
+			setProxy(randomProxy.random(ProxyType.socks));
 		}
 
 	}
