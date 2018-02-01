@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan(basePackages={"com.ec"})
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients(basePackages={"com.ec"})
 public class FormfloodApplication {
 	
 	private  static final Logger  LOGGER = LoggerFactory.getLogger(FormfloodApplication.class);
