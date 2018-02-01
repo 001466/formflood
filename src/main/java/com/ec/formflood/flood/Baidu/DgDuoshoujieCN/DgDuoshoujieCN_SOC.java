@@ -18,8 +18,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.ec.common.spider.generic.SocketSpider;
+import com.ec.common.spider.model.ProxyType;
 import com.ec.formflood.flood.Baidu.Baidu;
-import com.ec.formflood.model.ProxyType;
 import com.ec.formflood.random.RProduct;
 
 @Component("dgDuoshoujieCN_SOC")
@@ -43,7 +43,7 @@ public class DgDuoshoujieCN_SOC extends SocketSpider implements InitializingBean
 	@Override
 	public void crawl() {
 		
-		setProxy(randomProxy.random());
+		setProxy(proxyFeign.get(ProxyType.socks.name()).getData());
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		 params.add(new BasicNameValuePair("fname", name.random()));
@@ -111,7 +111,7 @@ public class DgDuoshoujieCN_SOC extends SocketSpider implements InitializingBean
 			LOGGER.error(e.getMessage(),e);
 		}finally{
 			params.clear();
-			setProxy(randomProxy.random(ProxyType.socks));
+			setProxy(proxyFeign.get(ProxyType.socks.name()).getData());
 		}
 
 	}

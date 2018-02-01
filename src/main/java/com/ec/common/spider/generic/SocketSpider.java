@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 
 import com.ec.common.spider.SpiderAbstract;
-import com.ec.formflood.random.RProxy.ProxyEntity;
+import com.ec.common.spider.model.ProxyEntity;
 
 public abstract class SocketSpider extends SpiderAbstract implements InitializingBean{
 	

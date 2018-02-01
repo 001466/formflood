@@ -1,6 +1,6 @@
 package com.ec.common.spider;
 
-import com.ec.formflood.random.RProxy;
+import com.ec.common.spider.model.ProxyEntity;
 
 public interface Spider {
 	
@@ -8,8 +8,8 @@ public interface Spider {
 
 	public void crawl();
 
-	public void setProxy(RProxy.ProxyEntity proxyEntity);
+	public void setProxy(ProxyEntity proxyEntity);
 	
-	public RProxy.ProxyEntity getProxy();
+	public ProxyEntity getProxy();
 
 }

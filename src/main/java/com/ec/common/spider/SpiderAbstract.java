@@ -7,26 +7,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
 
 import org.apache.http.NameValuePair;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.ec.common.spider.dao.ProxyFeign;
+import com.ec.common.spider.model.ProxyEntity;
 import com.ec.formflood.random.RAdderss;
 import com.ec.formflood.random.RComment;
 import com.ec.formflood.random.RName;
-import com.ec.formflood.random.RProduct;
-import com.ec.formflood.random.RProxy;
 import com.ec.formflood.random.RTelephone;
 
 public abstract class SpiderAbstract implements Spider {
 	
-	@Autowired
-	protected RProxy 	randomProxy;
-	
+
 	@Autowired
 	protected RName name;
 	@Autowired
@@ -35,16 +31,20 @@ public abstract class SpiderAbstract implements Spider {
 	protected RAdderss address;
 	@Autowired
 	protected RComment comment;
-	
 
-	protected RProxy.ProxyEntity proxyEntity;
+	
+	
+	@Autowired
+	protected ProxyFeign 	proxyFeign;
+
+	protected ProxyEntity proxyEntity;
 
 	@Override
-	public RProxy.ProxyEntity getProxy() {
+	public ProxyEntity getProxy() {
 		return proxyEntity;
 	}
 
-	public void setProxyEntity(RProxy.ProxyEntity proxyEntity) {
+	public void setProxyEntity(ProxyEntity proxyEntity) {
 		this.proxyEntity = proxyEntity;
 	}
 

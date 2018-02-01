@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 
 import com.ec.common.spider.SpiderAbstract;
-import com.ec.formflood.model.ProxyType;
-import com.ec.formflood.random.RProxy.ProxyEntity;
+import com.ec.common.spider.model.ProxyEntity;
+import com.ec.common.spider.model.ProxyType;
 
 public abstract class URLSpider extends SpiderAbstract implements InitializingBean{
 
@@ -88,7 +88,7 @@ public abstract class URLSpider extends SpiderAbstract implements InitializingBe
 		sb.append("error:").append(ex.getMessage()).append("\r\n");
 		sb.append("\r\n");
 		LOGGER.error(sb.toString());
-		setProxy(randomProxy.random(ProxyType.http));
+		setProxy(proxyFeign.get(ProxyType.http.name()).getData());
 	}
 	
 	public void onSuccess(HttpURLConnection connection, List<NameValuePair> params) throws IOException{

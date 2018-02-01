@@ -1,4 +1,4 @@
-package com.ec.formflood.model;
+package com.ec.common.spider.model;
 
 public enum ProxyType {
 

@@ -41,8 +41,8 @@ import org.springframework.util.concurrent.SuccessCallback;
 import org.springframework.web.client.AsyncRestTemplate;
 
 import com.ec.common.spider.SpiderAbstract;
-import com.ec.formflood.model.ProxyType;
-import com.ec.formflood.random.RProxy;
+import com.ec.common.spider.model.ProxyEntity;
+import com.ec.common.spider.model.ProxyType;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -155,7 +155,7 @@ public abstract class AsyncRestTemplateSpider extends SpiderAbstract implements 
 	}
 	
 
-	public void setProxy(RProxy.ProxyEntity proxyEntity) {
+	public void setProxy(ProxyEntity proxyEntity) {
 		
 		CloseableHttpAsyncClient httpClient = null;
 		setProxyEntity(proxyEntity);
@@ -324,7 +324,7 @@ public abstract class AsyncRestTemplateSpider extends SpiderAbstract implements 
 			sb.append("error:").append(ex.getMessage()).append("\r\n");
 			sb.append("\r\n");
 			LOGGER.error(sb.toString());
-			setProxy(randomProxy.random(ProxyType.http));
+			setProxy(proxyFeign.get(ProxyType.http.name()).getData());
 
 		}
 	}
