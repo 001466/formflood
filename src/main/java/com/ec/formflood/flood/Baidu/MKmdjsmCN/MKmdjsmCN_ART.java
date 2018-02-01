@@ -1,18 +1,19 @@
-package com.ec.formflood.flood.MKmdjsmCN;
+package com.ec.formflood.flood.Baidu.MKmdjsmCN;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.ec.common.model.BaseEntity;
-import com.ec.formflood.flood.FloodAsyncRestTemplate;
+import com.ec.common.spider.generic.AsyncRestTemplateSpider;
 import com.ec.formflood.random.RProduct;
 
-@Service("mKmdjsmCN_ART")
-public class MKmdjsmCN_ART extends FloodAsyncRestTemplate {
+@Component("mKmdjsmCN_ART")
+public class MKmdjsmCN_ART extends AsyncRestTemplateSpider {
 	
 	protected static final Logger LOGGER = LoggerFactory.getLogger(MKmdjsmCN_ART.class);
 
@@ -25,7 +26,7 @@ public class MKmdjsmCN_ART extends FloodAsyncRestTemplate {
 
 
 	@Override
-	public void flooding() {
+	public void crawl() {
 		
 		//setProxy(randomProxy.random(RProxy.ProxyType.HTTP));
 		

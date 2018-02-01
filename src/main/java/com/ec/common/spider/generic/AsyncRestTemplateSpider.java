@@ -1,4 +1,4 @@
-package com.ec.formflood.flood;
+package com.ec.common.spider.generic;
 
 import java.lang.reflect.Field;
 import java.security.cert.CertificateException;
@@ -40,14 +40,15 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.SuccessCallback;
 import org.springframework.web.client.AsyncRestTemplate;
 
+import com.ec.common.spider.SpiderAbstract;
 import com.ec.formflood.model.ProxyType;
 import com.ec.formflood.random.RProxy;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public abstract class FloodAsyncRestTemplate extends FloodAbstract implements InitializingBean {
+public abstract class AsyncRestTemplateSpider extends SpiderAbstract implements InitializingBean {
 	
-	protected static final Logger LOGGER = LoggerFactory.getLogger(FloodAsyncRestTemplate.class);
+	protected static final Logger LOGGER = LoggerFactory.getLogger(AsyncRestTemplateSpider.class);
 	
 	@Value("${httpclient.timeout:5000}")
 	private int httpclientTimeout;

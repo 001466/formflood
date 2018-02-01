@@ -1,4 +1,4 @@
-package com.ec.formflood.flood.LvtZoosnetNET;
+package com.ec.formflood.flood.Baidu.LvtZoosnetNET;
 
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -14,18 +14,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.ec.common.spider.generic.AsyncRestTemplateSpider;
 import com.ec.common.utils.FileUtil;
-import com.ec.formflood.flood.FloodAsyncRestTemplate;
 
 import net.sourceforge.tess4j.ITessAPI;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.util.ImageHelper;
 import net.sourceforge.tess4j.util.LoadLibs;
 
-@Service("lvtZoosnetNET_ART")
-public class LvtZoosnetNET_ART extends FloodAsyncRestTemplate implements InitializingBean {
+@Component("lvtZoosnetNET_ART")
+public class LvtZoosnetNET_ART extends AsyncRestTemplateSpider implements InitializingBean {
 
 	protected static final Logger LOGGER = LoggerFactory.getLogger(LvtZoosnetNET_ART.class);
 
@@ -37,7 +38,7 @@ public class LvtZoosnetNET_ART extends FloodAsyncRestTemplate implements Initial
 	}
 
 	@Override
-	public void flooding() {
+	public void crawl() {
 
 		try {
 			String filename = "download/LvtZoosnetNET/1.gif";

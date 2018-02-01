@@ -1,4 +1,4 @@
-package com.ec.formflood.flood;
+package com.ec.common.spider;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -22,7 +22,7 @@ import com.ec.formflood.random.RProduct;
 import com.ec.formflood.random.RProxy;
 import com.ec.formflood.random.RTelephone;
 
-public abstract class FloodAbstract implements Flood {
+public abstract class SpiderAbstract implements Spider {
 	
 	@Autowired
 	protected RProxy 	randomProxy;

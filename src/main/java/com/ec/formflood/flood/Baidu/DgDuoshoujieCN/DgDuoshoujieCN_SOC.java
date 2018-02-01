@@ -1,4 +1,4 @@
-package com.ec.formflood.flood.DgDuoshoujieCN;
+package com.ec.formflood.flood.Baidu.DgDuoshoujieCN;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -15,14 +15,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-import com.ec.formflood.flood.FloodSocket;
+import com.ec.common.spider.generic.SocketSpider;
+import com.ec.formflood.flood.Baidu.Baidu;
 import com.ec.formflood.model.ProxyType;
 import com.ec.formflood.random.RProduct;
 
-@Service("dgDuoshoujieCN_SOC")
-public class DgDuoshoujieCN_SOC extends FloodSocket implements InitializingBean {
+@Component("dgDuoshoujieCN_SOC")
+public class DgDuoshoujieCN_SOC extends SocketSpider implements InitializingBean,Baidu {
 	
 	protected static final Logger LOGGER = LoggerFactory.getLogger(DgDuoshoujieCN_SOC.class);
 
@@ -40,7 +41,7 @@ public class DgDuoshoujieCN_SOC extends FloodSocket implements InitializingBean 
 	}
 
 	@Override
-	public void flooding() {
+	public void crawl() {
 		
 		setProxy(randomProxy.random());
 		

@@ -85,17 +85,21 @@ public class RProxy {
 	
 	public ProxyEntity random() {
 
-		// ProxyEntity p = new ProxyEntity("163.125.99.84",9797,ProxyType.HTTP);
+		 ProxyEntity p = new ProxyEntity("163.125.99.84",9797,ProxyType.http);
 		// ProxyEntity p = new
 		// ProxyEntity("123.207.25.143",3128,ProxyType.HTTPS);
-		//ProxyEntity p = new ProxyEntity("139.199.230.242", 1080, ProxyType.SOCKS);
-		Response<ProxyEntity> res=proxiesFeign.get("http");
-		return res.getData();
+		//ProxyEntity p = new ProxyEntity("139.199.230.242", 1080, ProxyType.socks);
+		//Response<ProxyEntity> res=proxiesFeign.get("http");
+		//return res.getData();
+		return p;
 	}
 
 	public ProxyEntity random(ProxyType type) {
-		Response<ProxyEntity> res=proxiesFeign.get(type.name());
-		return res.getData();
+		//Response<ProxyEntity> res=proxiesFeign.get(type.name());
+		//return res.getData();
+		
+		 ProxyEntity p = new ProxyEntity("163.125.99.84",9797,ProxyType.http);
+		 return p;
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.ec.formflood.flood.DgDuoshoujieCN;
+package com.ec.formflood.flood.Baidu.DgDuoshoujieCN;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -14,13 +14,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.ec.formflood.flood.FloodURL;
+import com.ec.common.spider.generic.URLSpider;
 import com.ec.formflood.random.RProduct;
 
-@Service("dgDuoshoujieCN_URL")
-public class DgDuoshoujieCN_URL extends FloodURL implements InitializingBean{
+@Component("dgDuoshoujieCN_URL")
+public class DgDuoshoujieCN_URL extends URLSpider implements InitializingBean{
 
 	protected static final Logger LOGGER = LoggerFactory.getLogger(DgDuoshoujieCN_URL.class);
 	
@@ -33,7 +34,7 @@ public class DgDuoshoujieCN_URL extends FloodURL implements InitializingBean{
 
 	
 	@Override
-	public void flooding()  {
+	public void crawl()  {
 		
 		
 		 List<NameValuePair> params = new ArrayList<NameValuePair>();

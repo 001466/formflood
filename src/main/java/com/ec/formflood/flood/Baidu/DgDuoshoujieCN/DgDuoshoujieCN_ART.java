@@ -1,18 +1,19 @@
-package com.ec.formflood.flood.DgDuoshoujieCN;
+package com.ec.formflood.flood.Baidu.DgDuoshoujieCN;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.ec.common.model.BaseEntity;
-import com.ec.formflood.flood.FloodAsyncRestTemplate;
+import com.ec.common.spider.generic.AsyncRestTemplateSpider;
+import com.ec.formflood.flood.Baidu.Baidu;
 import com.ec.formflood.random.RProduct;
 
-@Service("dgDuoshoujieCN_ART")
-public class DgDuoshoujieCN_ART extends FloodAsyncRestTemplate {
+@Component("dgDuoshoujieCN_ART")
+public class DgDuoshoujieCN_ART extends AsyncRestTemplateSpider implements Baidu {
 	
 	protected static final Logger LOGGER = LoggerFactory.getLogger(DgDuoshoujieCN_ART.class);
 	
@@ -23,7 +24,7 @@ public class DgDuoshoujieCN_ART extends FloodAsyncRestTemplate {
 	static final String url="http://dg.duoshoujie.cn/fopai/submit.asp";
 
 	@Override
-	public void flooding() {
+	public void crawl() {
 		
 		
 		//setProxy(randomProxy.random(RProxy.ProxyType.HTTP));

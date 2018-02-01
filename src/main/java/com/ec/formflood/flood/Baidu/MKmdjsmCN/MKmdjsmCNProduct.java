@@ -1,4 +1,4 @@
-package com.ec.formflood.flood.MKmdjsmCN;
+package com.ec.formflood.flood.Baidu.MKmdjsmCN;
 
 import org.springframework.stereotype.Component;
 

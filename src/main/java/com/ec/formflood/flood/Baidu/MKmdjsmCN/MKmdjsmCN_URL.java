@@ -1,4 +1,4 @@
-package com.ec.formflood.flood.MKmdjsmCN;
+package com.ec.formflood.flood.Baidu.MKmdjsmCN;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -13,12 +13,13 @@ import org.apache.http.message.BasicNameValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.ec.formflood.flood.FloodURL;
+import com.ec.common.spider.generic.URLSpider;
 
-@Service("mKmdjsmCN_URL")
-public class MKmdjsmCN_URL extends FloodURL implements InitializingBean{
+@Component("mKmdjsmCN_URL")
+public class MKmdjsmCN_URL extends URLSpider implements InitializingBean{
 
 	protected static final Logger LOGGER = LoggerFactory.getLogger(MKmdjsmCN_URL.class);
 
@@ -28,7 +29,7 @@ public class MKmdjsmCN_URL extends FloodURL implements InitializingBean{
 	 
 
 	@Override
-	public void flooding()  {
+	public void crawl()  {
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
 

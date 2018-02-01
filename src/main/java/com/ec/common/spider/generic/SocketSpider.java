@@ -1,4 +1,4 @@
-package com.ec.formflood.flood;
+package com.ec.common.spider.generic;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -14,11 +14,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 
+import com.ec.common.spider.SpiderAbstract;
 import com.ec.formflood.random.RProxy.ProxyEntity;
 
-public abstract class FloodSocket extends FloodAbstract implements InitializingBean{
+public abstract class SocketSpider extends SpiderAbstract implements InitializingBean{
 	
-	protected static final Logger LOGGER = LoggerFactory.getLogger(FloodSocket.class);
+	protected static final Logger LOGGER = LoggerFactory.getLogger(SocketSpider.class);
 
 	protected Socket socket;
 	protected URI uri;

@@ -1,4 +1,4 @@
-package com.ec.formflood.flood;
+package com.ec.common.spider.generic;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -13,12 +13,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 
+import com.ec.common.spider.SpiderAbstract;
 import com.ec.formflood.model.ProxyType;
 import com.ec.formflood.random.RProxy.ProxyEntity;
 
-public abstract class FloodURL extends FloodAbstract implements InitializingBean{
+public abstract class URLSpider extends SpiderAbstract implements InitializingBean{
 
-	protected static final Logger LOGGER = LoggerFactory.getLogger(FloodURL.class);
+	protected static final Logger LOGGER = LoggerFactory.getLogger(URLSpider.class);
 	
 	protected URL URL=null;
 	

@@ -1,4 +1,4 @@
-package com.ec.formflood.flood.DgDuoshoujieCN;
+package com.ec.formflood.flood.Baidu.DgDuoshoujieCN;
 
 import org.springframework.stereotype.Component;
 
