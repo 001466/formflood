@@ -7,13 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.ec.common.ApplicationContext;
-import com.ec.formflood.FormfloodApplicationTests;
 import com.ec.formflood.flood.Flood;
 @Service
 public class BaiduTask extends Flood<Baidu>{
 
 	
-	protected static final Logger LOGGER = LoggerFactory.getLogger(FormfloodApplicationTests.class);
+	protected static final Logger LOGGER = LoggerFactory.getLogger(BaiduTask.class);
 
 	
 	public Map<String, Baidu> getSpiders() {
