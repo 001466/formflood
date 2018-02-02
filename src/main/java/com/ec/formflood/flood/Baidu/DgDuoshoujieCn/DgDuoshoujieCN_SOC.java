@@ -1,4 +1,4 @@
-package com.ec.formflood.flood.Baidu.DgDuoshoujieCN;
+package com.ec.formflood.flood.Baidu.DgDuoshoujieCn;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

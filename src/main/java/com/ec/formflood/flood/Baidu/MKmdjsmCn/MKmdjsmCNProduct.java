@@ -1,12 +1,11 @@
-package com.ec.formflood.flood.Baidu.DgDuoshoujieCN;
+package com.ec.formflood.flood.Baidu.MKmdjsmCn;
 
 import org.springframework.stereotype.Component;
 
 import com.ec.formflood.random.RProduct;
-import com.ec.formflood.random.RProduct.ProductEntity;
 
-@Component("dgDuoshoujieCNProduct")
-public class DgDuoshoujieCNProduct extends RProduct {
+@Component("mKmdjsmCNProduct")
+public class MKmdjsmCNProduct extends RProduct {
 	
 	public static class MKmdjsmCNProductEntity extends RProduct.ProductEntity{
 

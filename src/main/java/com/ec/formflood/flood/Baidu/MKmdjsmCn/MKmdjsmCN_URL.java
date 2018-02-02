@@ -1,4 +1,4 @@
-package com.ec.formflood.flood.Baidu.MKmdjsmCN;
+package com.ec.formflood.flood.Baidu.MKmdjsmCn;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.ec.formflood.flood.Baidu.DgDuoshoujieCN;
+package com.ec.formflood.flood.Baidu.DgDuoshoujieCn;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

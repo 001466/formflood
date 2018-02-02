@@ -1,4 +1,4 @@
-package com.ec.formflood.flood.Baidu.LvtZoosnetNET;
+package com.ec.formflood.flood.Baidu.LvtZoosnetNet;
 
 import java.awt.Color;
 import java.awt.Rectangle;

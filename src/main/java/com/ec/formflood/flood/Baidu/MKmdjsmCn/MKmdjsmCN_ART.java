@@ -1,4 +1,4 @@
-package com.ec.formflood.flood.Baidu.MKmdjsmCN;
+package com.ec.formflood.flood.Baidu.MKmdjsmCn;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
