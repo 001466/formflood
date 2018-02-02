@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.ec.formflood.random.RAdderss;
 @Component("rAdderssLocalImpl")
-public class RAdderssLocalImpl extends RAdderss{
+public class RAdderssLocalImpl implements RAdderss{
 
 	@Override
 	public AdderssEntity random() {

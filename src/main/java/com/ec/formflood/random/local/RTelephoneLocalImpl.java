@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import com.ec.formflood.random.RTelephone;
 @Component("rTelephoneLocalImpl")
 
-public class RTelephoneLocalImpl extends RTelephone{
+public class RTelephoneLocalImpl implements RTelephone{
 
 	@Override
 	public Long random() {

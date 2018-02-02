@@ -1,6 +1,6 @@
 package com.ec.formflood.random;
 
-public abstract class RProduct {
+public interface  RProduct {
 	public static  class ProductEntity {
 
 		String id;

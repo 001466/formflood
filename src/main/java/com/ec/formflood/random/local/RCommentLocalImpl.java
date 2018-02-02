@@ -2,15 +2,15 @@ package com.ec.formflood.random.local;
 
 import org.springframework.stereotype.Component;
 
-import com.ec.formflood.random.RName;
-@Component("rNameLocalImpl")
+import com.ec.formflood.random.RComment;
+@Component("rCommentLocalImpl")
 
-public class RNameLocalImpl implements RName{
+public class RCommentLocalImpl implements RComment{
 
 	@Override
 	public String random() {
 		// TODO Auto-generated method stub
-		return "李明";
+		return "哈哈合";
 	}
 
 }

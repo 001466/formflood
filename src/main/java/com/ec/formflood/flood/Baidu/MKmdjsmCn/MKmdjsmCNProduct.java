@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import com.ec.formflood.random.RProduct;
 
 @Component("mKmdjsmCNProduct")
-public class MKmdjsmCNProduct extends RProduct {
+public class MKmdjsmCNProduct implements RProduct {
 	
 	public static class MKmdjsmCNProductEntity extends RProduct.ProductEntity{
 

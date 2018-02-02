@@ -1,5 +1,5 @@
 package com.ec.formflood.random;
 
-public abstract class RTelephone {
+public interface  RTelephone {
 	public abstract Long random() ;
 }

@@ -1,6 +1,6 @@
 package com.ec.formflood.random;
 
-public abstract class RAdderss {
+public interface  RAdderss {
 	public class AdderssEntity {
 		String province;
 		String city;

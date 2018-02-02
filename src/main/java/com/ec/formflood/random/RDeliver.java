@@ -1,9 +1,6 @@
 package com.ec.formflood.random;
 
-import org.springframework.stereotype.Component;
-
-@Component("deliver")
-public class RDeliver {
+public interface RDeliver {
 	public class DeliverEntity {
 		String id;
 		String name;
@@ -40,8 +37,6 @@ public class RDeliver {
 			this.type = type;
 		}
 	}
-	public DeliverEntity random() {
-		return null;
-	}
+	public DeliverEntity random();
 
 }

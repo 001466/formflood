@@ -6,7 +6,7 @@ import com.ec.formflood.random.RProduct;
 import com.ec.formflood.random.RProduct.ProductEntity;
 
 @Component("dgDuoshoujieCNProduct")
-public class DgDuoshoujieCNProduct extends RProduct {
+public class DgDuoshoujieCNProduct implements RProduct {
 	
 	public static class MKmdjsmCNProductEntity extends RProduct.ProductEntity{
 
