@@ -1,10 +1,5 @@
 package com.ec.formflood.random;
 
-import org.springframework.stereotype.Component;
-
-@Component("name")
-public class RName {
-	public String random() {
-		return "张三";
-	}
+public abstract class RName {
+	public abstract String random() ;
 }

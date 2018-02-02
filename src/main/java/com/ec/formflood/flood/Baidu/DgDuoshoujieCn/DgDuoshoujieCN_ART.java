@@ -11,6 +11,7 @@ import com.ec.common.model.BaseEntity;
 import com.ec.common.spider.generic.AsyncRestTemplateSpider;
 import com.ec.formflood.flood.Baidu.Baidu;
 import com.ec.formflood.random.RProduct;
+import com.ec.formflood.util.RandomUtil;
 
 @Component("dgDuoshoujieCN_ART")
 public class DgDuoshoujieCN_ART extends AsyncRestTemplateSpider implements Baidu {
@@ -21,6 +22,9 @@ public class DgDuoshoujieCN_ART extends AsyncRestTemplateSpider implements Baidu
 	@Qualifier("dgDuoshoujieCNProduct")
 	RProduct product;
 	
+	@Autowired
+	RandomUtil randomUtil;
+	
 	static final String url="http://dg.duoshoujie.cn/fopai/submit.asp";
 
 	@Override
@@ -30,11 +34,11 @@ public class DgDuoshoujieCN_ART extends AsyncRestTemplateSpider implements Baidu
 		//setProxy(randomProxy.random(RProxy.ProxyType.HTTP));
 		
 		FloodEntity pro=new FloodEntity();
-		pro.setFname(name.random());
-		pro.setFtel(telephone.random());
-		pro.setFaddress(address.random().toString());
+		pro.setFname(randomUtil.getName().random());
+		pro.setFtel(randomUtil.getTelephone().random());
+		pro.setFaddress(randomUtil.getAddress().random().toString());
 		pro.setFchanpin(product.random().toString());
-		pro.setRemark(comment.random());
+		pro.setRemark(randomUtil.getComment().random());
 		
 		try {
 			

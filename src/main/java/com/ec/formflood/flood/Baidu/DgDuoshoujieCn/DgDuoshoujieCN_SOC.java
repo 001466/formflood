@@ -21,6 +21,7 @@ import com.ec.common.spider.generic.SocketSpider;
 import com.ec.common.spider.model.ProxyType;
 import com.ec.formflood.flood.Baidu.Baidu;
 import com.ec.formflood.random.RProduct;
+import com.ec.formflood.util.RandomUtil;
 
 @Component("dgDuoshoujieCN_SOC")
 public class DgDuoshoujieCN_SOC extends SocketSpider implements InitializingBean,Baidu {
@@ -34,7 +35,9 @@ public class DgDuoshoujieCN_SOC extends SocketSpider implements InitializingBean
 	@Qualifier("dgDuoshoujieCNProduct")
 	RProduct product;
 	
-
+	@Autowired
+	RandomUtil randomUtil;
+	
 	@Override
 	public String getUrl() {
 		return url;
@@ -46,11 +49,11 @@ public class DgDuoshoujieCN_SOC extends SocketSpider implements InitializingBean
 		setProxy(proxyFeign.get(ProxyType.socks.name()).getData());
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		 params.add(new BasicNameValuePair("fname", name.random()));
-		 params.add(new BasicNameValuePair("ftel", telephone.random().toString()));
-		 params.add(new BasicNameValuePair("faddress", address.random().toString()));
+		 params.add(new BasicNameValuePair("fname", randomUtil.getName().random()));
+		 params.add(new BasicNameValuePair("ftel", randomUtil.getTelephone().random().toString()));
+		 params.add(new BasicNameValuePair("faddress", randomUtil.getAddress().random().toString()));
 		 params.add(new BasicNameValuePair("fchanpin", product.random().toString()));
-		 params.add(new BasicNameValuePair("remark", comment.random().toString()));
+		 params.add(new BasicNameValuePair("remark", randomUtil.getComment().random().toString()));
 		
 		
 		try {

@@ -22,17 +22,6 @@ import com.ec.formflood.random.RTelephone;
 
 public abstract class SpiderAbstract implements Spider {
 	
-
-	@Autowired
-	protected RName name;
-	@Autowired
-	protected RTelephone telephone;
-	@Autowired
-	protected RAdderss address;
-	@Autowired
-	protected RComment comment;
-
-	
 	
 	@Autowired
 	protected ProxyFeign 	proxyFeign;

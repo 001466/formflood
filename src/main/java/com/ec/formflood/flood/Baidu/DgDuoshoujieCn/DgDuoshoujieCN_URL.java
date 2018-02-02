@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import com.ec.common.spider.generic.URLSpider;
 import com.ec.formflood.random.RProduct;
+import com.ec.formflood.util.RandomUtil;
 
 @Component("dgDuoshoujieCN_URL")
 public class DgDuoshoujieCN_URL extends URLSpider implements InitializingBean{
@@ -31,18 +32,19 @@ public class DgDuoshoujieCN_URL extends URLSpider implements InitializingBean{
 	@Qualifier("dgDuoshoujieCNProduct")
 	RProduct product;
 
-
+	@Autowired
+	RandomUtil randomUtil;
 	
 	@Override
 	public void crawl()  {
 		
 		
 		 List<NameValuePair> params = new ArrayList<NameValuePair>();
-		  params.add(new BasicNameValuePair("fname", name.random()));
-	        params.add(new BasicNameValuePair("ftel", telephone.random().toString()));
-	        params.add(new BasicNameValuePair("faddress", address.random().toString()));
+		  params.add(new BasicNameValuePair("fname", randomUtil.getName().random()));
+	        params.add(new BasicNameValuePair("ftel", randomUtil.getTelephone().random().toString()));
+	        params.add(new BasicNameValuePair("faddress", randomUtil.getAddress().random().toString()));
 	        params.add(new BasicNameValuePair("fchanpin", product.random().toString()));
-	        params.add(new BasicNameValuePair("remark", comment.random().toString()));
+	        params.add(new BasicNameValuePair("remark", randomUtil.getComment().random().toString()));
 		
 		try{
 			

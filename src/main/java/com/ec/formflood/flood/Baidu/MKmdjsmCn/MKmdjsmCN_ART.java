@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.ec.common.model.BaseEntity;
 import com.ec.common.spider.generic.AsyncRestTemplateSpider;
 import com.ec.formflood.random.RProduct;
+import com.ec.formflood.util.RandomUtil;
 
 @Component("mKmdjsmCN_ART")
 public class MKmdjsmCN_ART extends AsyncRestTemplateSpider {
@@ -20,7 +21,8 @@ public class MKmdjsmCN_ART extends AsyncRestTemplateSpider {
 	@Autowired
 	@Qualifier("mKmdjsmCNProduct")
 	RProduct product;
-	 
+	@Autowired
+	RandomUtil randomUtil;
 	
 	static final String url="http://m.kmdjsm.cn/fopai/sub.asp";
 
@@ -31,11 +33,11 @@ public class MKmdjsmCN_ART extends AsyncRestTemplateSpider {
 		//setProxy(randomProxy.random(RProxy.ProxyType.HTTP));
 		
 		FloodEntity pro=new FloodEntity();
-		pro.setFname(name.random());
-		pro.setFtel(telephone.random());
-		pro.setFaddress(address.random().toString());
+		pro.setFname(randomUtil.getName().random());
+		pro.setFtel(randomUtil.getTelephone().random());
+		pro.setFaddress(randomUtil.getAddress().random().toString());
 		pro.setFchanpin(product.random().toString());
-		pro.setRemark(comment.random());
+		pro.setRemark(randomUtil.getComment().random());
 		
 		try {
 			HttpHeaders httpHeaders=genFormHeader();

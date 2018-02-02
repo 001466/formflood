@@ -1,9 +1,6 @@
 package com.ec.formflood.random;
 
-import org.springframework.stereotype.Component;
-
-@Component("adderss")
-public  class RAdderss {
+public abstract class RAdderss {
 	public class AdderssEntity {
 		String province;
 		String city;
@@ -60,8 +57,6 @@ public  class RAdderss {
 	
 	
 
-	public  AdderssEntity random(){
-		return new AdderssEntity("广东省","广州市","天河区","中山一路338号");
-	}
+	public abstract  AdderssEntity random();
 	
 }
