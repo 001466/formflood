@@ -15,10 +15,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import com.ec.common.spider.generic.AsyncRestTemplateSpider;
-import com.ec.common.utils.FileUtil;
+import com.ec.common.util.FileUtil;
 
 import net.sourceforge.tess4j.ITessAPI;
 import net.sourceforge.tess4j.Tesseract;
