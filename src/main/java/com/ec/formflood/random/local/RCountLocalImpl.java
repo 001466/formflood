@@ -11,7 +11,6 @@ public class RCountLocalImpl implements RCount{
 
 	@Override
 	public Integer random() {
-		// TODO Auto-generated method stub
 		return 1;
 	}
 

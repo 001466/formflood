@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +12,14 @@ import org.apache.http.message.BasicNameValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
+import com.ec.common.spider.dao.ProxyFeign;
 import com.ec.common.spider.generic.URLSpider;
+import com.ec.common.spider.model.ProxyEntity;
+import com.ec.common.spider.model.ProxyType;
+import com.ec.formflood.util.RandomUtil;
 
 @Component("mKmdjsmCN_URL")
 public class MKmdjsmCN_URL extends URLSpider implements InitializingBean{
@@ -25,7 +28,10 @@ public class MKmdjsmCN_URL extends URLSpider implements InitializingBean{
 
 	static final String url="http://m.kmdjsm.cn/fopai/sub.asp";
 	
-	
+	@Autowired
+	RandomUtil randomUtil;
+	@Autowired
+	ProxyFeign proxyFeign;
 	 
 
 	@Override
@@ -36,8 +42,15 @@ public class MKmdjsmCN_URL extends URLSpider implements InitializingBean{
 
 
 		try{
+			ProxyEntity proxyEntity=proxyFeign.get(ProxyType.http.name()).getData();
 			
-			//setProxy(randomProxy.random(RProxy.ProxyType.HTTP));
+			System.err.println(proxyEntity);
+			System.err.println(proxyEntity);
+			System.err.println(proxyEntity);
+			System.err.println(proxyEntity);
+			System.err.println(proxyEntity);
+			
+			setProxy(proxyEntity);
 		
 	        connection.setDoOutput(true);
 	        connection.setDoInput(true);
@@ -58,11 +71,11 @@ public class MKmdjsmCN_URL extends URLSpider implements InitializingBean{
 	        connection.setRequestProperty("Connection", "Keep-Alive");
 	       
 	       
-	        params.add(new BasicNameValuePair("fname", "李四"));
-	        params.add(new BasicNameValuePair("ftel", "13049682450"));
-	        params.add(new BasicNameValuePair("faddress", "广东省怀从县准墒针镇受三村"));
+	        params.add(new BasicNameValuePair("fname", randomUtil.getName().random()));
+	        params.add(new BasicNameValuePair("ftel", randomUtil.getTelephone().random().toString()));
+	        params.add(new BasicNameValuePair("faddress", randomUtil.getAddress().random().toString()));
 	        params.add(new BasicNameValuePair("fchanpin", "天然白玛瑙 本命佛398元"));
-	        params.add(new BasicNameValuePair("remark", "xxxxxxxxxx"));
+	        params.add(new BasicNameValuePair("remark", randomUtil.getComment().random()));
 	        
 	        
 

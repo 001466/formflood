@@ -13,7 +13,7 @@ import com.ec.common.spider.generic.AsyncRestTemplateSpider;
 import com.ec.formflood.random.RProduct;
 import com.ec.formflood.util.RandomUtil;
 
-@Component("mKmdjsmCN_ART")
+//@Component("mKmdjsmCN_ART")
 public class MKmdjsmCN_ART extends AsyncRestTemplateSpider {
 	
 	protected static final Logger LOGGER = LoggerFactory.getLogger(MKmdjsmCN_ART.class);

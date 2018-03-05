@@ -10,7 +10,6 @@ public class RDeliverLocalImpl implements RDeliver{
 
 	@Override
 	public DeliverEntity random() {
-		// TODO Auto-generated method stub
 		return new DeliverEntity("随时可以联系我","","");
 	}
 

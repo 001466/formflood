@@ -51,6 +51,9 @@ public class RAdderssLocalImpl implements RAdderss,InitializingBean{
 					}
 					String areaStr=areaList.get(i);
 					String areaArr[]=areaStr.split(" ");
+					if(areaArr.length!=3){
+						continue;
+					}
 					String province=areaArr[0];
 					String city=areaArr[1];
 					String county=areaArr[2];
@@ -62,23 +65,20 @@ public class RAdderssLocalImpl implements RAdderss,InitializingBean{
 				
 			}
 			
-			for(AdderssEntity ad: adderssPools){
-				System.err.println(ad);
-			}
 		
 		
 		
 	}
 	
 	private List<String> readLine(String txt) throws IOException{
-		List<String> set=new ArrayList<>();
+		List<String> list=new ArrayList<>();
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(txt))));   
         String line = br.readLine();  
         while (line != null ) {
-       	 set.add(line);
-       	 line = br.readLine();   
+        	list.add(line);
+       	 	line = br.readLine();   
         }  
-        return set;
+        return list;
 	}
 
 }
