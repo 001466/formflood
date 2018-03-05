@@ -6,9 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,12 +21,18 @@ public class RAdderssLocalImpl implements RAdderss,InitializingBean{
 	protected static final Logger LOGGER = LoggerFactory.getLogger(BaiduFlood.class);
 
 	
-	private Set<AdderssEntity> adderssPools=new HashSet<>();
+	
+	private static int strategyIndex = 0;
+	
+	private List<AdderssEntity> adderssPools=new ArrayList<>();
 	
 	
 	@Override
 	public AdderssEntity random() {
-		return new AdderssEntity("广东","怀集","冷坑","爱三");
+
+		strategyIndex = ++strategyIndex % adderssPools.size();
+		return adderssPools.get(strategyIndex);
+	
 	}
 
 	@Override
