@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ec.common.ApplicationContext;
 import com.ec.formflood.flood.Flood;
-@Service
+//@Service
 public class BaiduFlood extends Flood<Baidu>{
 
 	

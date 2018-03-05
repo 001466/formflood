@@ -14,6 +14,13 @@ public interface  RAdderss {
 			this.county = county;
 			this.adderss=adderss;
 		}
+		
+		public AdderssEntity(String province, String city, String county ) {
+			super();
+			this.province = province;
+			this.city = city;
+			this.county = county;
+		}
 
 		public String getProvince() {
 			return province;
