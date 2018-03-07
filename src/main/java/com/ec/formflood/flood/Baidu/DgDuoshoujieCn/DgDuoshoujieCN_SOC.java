@@ -23,7 +23,7 @@ import com.ec.formflood.flood.Baidu.Baidu;
 import com.ec.formflood.random.RProduct;
 import com.ec.formflood.util.RandomUtil;
 
-@Component("dgDuoshoujieCN_SOC")
+//@Component("dgDuoshoujieCN_SOC")
 public class DgDuoshoujieCN_SOC extends SocketSpider implements InitializingBean,Baidu {
 	
 	protected static final Logger LOGGER = LoggerFactory.getLogger(DgDuoshoujieCN_SOC.class);
@@ -48,7 +48,7 @@ public class DgDuoshoujieCN_SOC extends SocketSpider implements InitializingBean
 		
 		setProxy(proxyFeign.get(ProxyType.socks.name()).getData());
 		
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		 List<NameValuePair> params = new ArrayList<NameValuePair>();
 		 params.add(new BasicNameValuePair("fname", randomUtil.getName().random()));
 		 params.add(new BasicNameValuePair("ftel", randomUtil.getTelephone().random().toString()));
 		 params.add(new BasicNameValuePair("faddress", randomUtil.getAddress().random().toString()));
@@ -112,9 +112,9 @@ public class DgDuoshoujieCN_SOC extends SocketSpider implements InitializingBean
 			
 		} catch (IOException e) {
 			LOGGER.error(e.getMessage(),e);
+			onFailure(e,params);
 		}finally{
 			params.clear();
-			setProxy(proxyFeign.get(ProxyType.socks.name()).getData());
 		}
 
 	}

@@ -11,4 +11,7 @@ import com.ec.common.spider.model.ProxyEntity;
 public interface ProxyFeign {
 	@RequestMapping("/get/{protl}")
 	public Response<ProxyEntity> get(@RequestParam("protl") String protl);
+	
+	@RequestMapping("/del/{id}")
+	public Response<String> del(@RequestParam("id") String id);
 }

@@ -11,18 +11,17 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ec.common.spider.dao.ProxyFeign;
 import com.ec.common.spider.generic.URLSpider;
 import com.ec.common.spider.model.ProxyEntity;
 import com.ec.common.spider.model.ProxyType;
+import com.ec.formflood.flood.Baidu.Baidu;
 import com.ec.formflood.util.RandomUtil;
 
 @Component("mKmdjsmCN_URL")
-public class MKmdjsmCN_URL extends URLSpider implements InitializingBean{
+public class MKmdjsmCN_URL extends URLSpider   {
 
 	protected static final Logger LOGGER = LoggerFactory.getLogger(MKmdjsmCN_URL.class);
 
@@ -30,8 +29,6 @@ public class MKmdjsmCN_URL extends URLSpider implements InitializingBean{
 	
 	@Autowired
 	RandomUtil randomUtil;
-	@Autowired
-	ProxyFeign proxyFeign;
 	 
 
 	@Override
@@ -44,11 +41,6 @@ public class MKmdjsmCN_URL extends URLSpider implements InitializingBean{
 		try{
 			ProxyEntity proxyEntity=proxyFeign.get(ProxyType.http.name()).getData();
 			
-			System.err.println(proxyEntity);
-			System.err.println(proxyEntity);
-			System.err.println(proxyEntity);
-			System.err.println(proxyEntity);
-			System.err.println(proxyEntity);
 			
 			setProxy(proxyEntity);
 		
@@ -89,11 +81,7 @@ public class MKmdjsmCN_URL extends URLSpider implements InitializingBean{
 
 	        
 		}catch(Exception ex){
-			try {
 				onFailure(connection, params,ex);
-			} catch (IOException e) {
-				LOGGER.error(e.getMessage(),e);
-			}
 		}finally{
 			params.clear();
 		}

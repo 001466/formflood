@@ -13,7 +13,7 @@ import com.ec.formflood.flood.Baidu.Baidu;
 import com.ec.formflood.random.RProduct;
 import com.ec.formflood.util.RandomUtil;
 
-@Component("dgDuoshoujieCN_ART")
+//@Component("dgDuoshoujieCN_ART")
 public class DgDuoshoujieCN_ART extends AsyncRestTemplateSpider implements Baidu {
 	
 	protected static final Logger LOGGER = LoggerFactory.getLogger(DgDuoshoujieCN_ART.class);

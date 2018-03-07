@@ -15,14 +15,16 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import com.ec.common.spider.generic.URLSpider;
+import com.ec.common.spider.model.ProxyEntity;
+import com.ec.common.spider.model.ProxyType;
+import com.ec.formflood.flood.Baidu.Baidu;
 import com.ec.formflood.random.RProduct;
 import com.ec.formflood.util.RandomUtil;
 
 @Component("dgDuoshoujieCN_URL")
-public class DgDuoshoujieCN_URL extends URLSpider implements InitializingBean{
+public class DgDuoshoujieCN_URL extends URLSpider implements InitializingBean,Baidu{
 
 	protected static final Logger LOGGER = LoggerFactory.getLogger(DgDuoshoujieCN_URL.class);
 	
@@ -49,8 +51,10 @@ public class DgDuoshoujieCN_URL extends URLSpider implements InitializingBean{
 		try{
 			
 			
-			//setProxy(randomProxy.random(RProxy.ProxyType.HTTP));
+			ProxyEntity proxyEntity=proxyFeign.get(ProxyType.http.name()).getData();
 			
+			
+			setProxy(proxyEntity);			
 	        connection.setDoOutput(true);
 	        connection.setDoInput(true);
 	        
@@ -90,11 +94,7 @@ public class DgDuoshoujieCN_URL extends URLSpider implements InitializingBean{
 	        onSuccess(connection, params);
 	        
 		}catch(Exception ex){
-			try {
 				onFailure(connection, params,ex);
-			} catch (IOException e) {
-				LOGGER.error(e.getMessage(),e);
-			}
 		}finally{
 			params.clear();
 		}

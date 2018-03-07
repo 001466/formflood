@@ -215,7 +215,7 @@ public abstract class AsyncRestTemplateSpider extends SpiderAbstract implements 
 		}catch(Exception e){
 			LOGGER.error(e.getMessage(),e);
 		}
-	
+		LOGGER.info("set proxy",this.proxyEntity);
 		
 	}
 	
@@ -279,7 +279,7 @@ public abstract class AsyncRestTemplateSpider extends SpiderAbstract implements 
 			System.err.println(new String(result.getBody()));
 			
 			StringBuilder sb = new StringBuilder();
-			sb.append("\r\n");
+			sb.append("onSuccess\r\n");
 			sb.append("url:").append(url).append("\r\n");
 			sb.append("params:").append(params).append("\r\n");
 			if (proxyEntity != null)
@@ -318,22 +318,29 @@ public abstract class AsyncRestTemplateSpider extends SpiderAbstract implements 
 		@Override
 		public void onFailure(Throwable ex) {
 			
-			System.err.println(ex.getMessage());
-
-			StringBuilder sb = new StringBuilder();
-			sb.append("\r\n");
-			sb.append("url:").append(url).append("\r\n");
-			sb.append("params:").append(params).append("\r\n");
-			if (proxyEntity != null)
-				sb.append("proxy:").append(proxyEntity.getHost()).append(",").append(proxyEntity.getPort())
-						.append(",").append(proxyEntity.getProtl()).append(",")
-						.append(proxyEntity.getUsername()).append(",").append(proxyEntity.getPassword())
-						.append("\r\n");
-			sb.append("duration:").append(System.currentTimeMillis() - s).append("\r\n");
-			sb.append("error:").append(ex.getMessage()).append("\r\n");
-			sb.append("\r\n");
-			LOGGER.error(sb.toString());
-			setProxy(proxyFeign.get(ProxyType.http.name()).getData());
+			try{
+				StringBuilder sb = new StringBuilder();
+				sb.append("onFailure\r\n");
+				sb.append("url:").append(url).append("\r\n");
+				sb.append("params:").append(params).append("\r\n");
+				if (proxyEntity != null)
+					sb.append("proxy:").append(proxyEntity.getHost()).append(",").append(proxyEntity.getPort())
+							.append(",").append(proxyEntity.getProtl()).append(",")
+							.append(proxyEntity.getUsername()).append(",").append(proxyEntity.getPassword())
+							.append("\r\n");
+				sb.append("duration:").append(System.currentTimeMillis() - s).append("\r\n");
+				sb.append("error:").append(ex.getMessage()).append("\r\n");
+				sb.append("\r\n");
+				LOGGER.error(sb.toString());
+			}catch(Exception e){
+				LOGGER.error(e.getMessage(),e);
+			}finally {
+				if (proxyEntity != null){
+					proxyFeign.del(proxyEntity.getId());
+					LOGGER.info("del proxy",proxyEntity);
+				}
+				setProxy(proxyFeign.get(ProxyType.http.name()).getData());
+			}
 
 		}
 	}
